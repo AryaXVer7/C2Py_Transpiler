@@ -1,2 +1,7 @@
 def generate(ast):
-	return f"{ast['name']} = {ast['value']}"
+    output = []
+    
+    for node in ast:
+        output.append(f"{node['name']} = {node['value']}")
+        
+    return "\n".join(output)

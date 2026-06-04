@@ -1,9 +1,9 @@
 def tokenizer(source):
-	create_tokens = source.replace(";", " ;").replace("=", " = ").split()
+	spliting_to_tokens = source.replace(";", " ;").replace("=", " = ").split()
 
 	Tokens = []
 
-	for token in create_tokens:
+	for token in spliting_to_tokens:
 		if token == "int":
 			Tokens.append(("INT", token))
 
@@ -23,6 +23,6 @@ def tokenizer(source):
 			Tokens.append(("CHAR_LITERAL", token[1]))
 
 		else:
-			Tokens.append(("IDENTIFIER", token))
+			Tokens.append(("IDENTIFIER", token)) 
 
 	return Tokens
