@@ -1,4 +1,4 @@
-# C2Py_Transpiler_Version_0.1
+# C2Py_Transpiler_Version_1
 
 A beginner-friendly C to Python transpiler written in Python.
 
@@ -6,7 +6,7 @@ This project is part of my compiler development journey. The goal is to learn ho
 
 Instead of translating the entire C language, this project starts with a very small subset of C and gradually adds new features in each version.
 
-Current version: **v0.1**
+Current version: **v1**
 
 ---
 
