@@ -1,4 +1,4 @@
-# C2Py_Transpiler_Version_1
+# C2Py_Transpiler
 
 A beginner-friendly C to Python transpiler written in Python.
 
@@ -6,7 +6,7 @@ This project is part of my compiler development journey. The goal is to learn ho
 
 Instead of translating the entire C language, this project starts with a very small subset of C and gradually adds new features in each version.
 
-Current version: **v1**
+Current version: **v2**
 
 ---
 
@@ -20,6 +20,7 @@ Current version: **v1**
 ### Supported Statements
 
 Variable declarations with initialization.
+Multiple variable declarations
 
 Example:
 
@@ -32,17 +33,26 @@ Generated Python:
 
 ```python
 age = 20
-grade = 'A'
+grade = A
 ```
 
----
+### File-Based Transpilation
 
+The transpiler:
+
+1. Reads C source code from `input.c`
+2. Tokenizes the source code
+3. Builds an Abstract Syntax Tree (AST)
+4. Generates equivalent Python code
+5. Writes the result to `python_code.py`
+
+---
 ## Compiler Pipeline
 
 The transpiler follows the basic structure used in real compilers:
 
 ```text
-Source Code
+inout.c (source_code)
      │
      ▼
    Lexer
@@ -60,7 +70,7 @@ Source Code
 Code Generator
      │
      ▼
-Python Code
+python_code.py (output file)
 ```
 
 ---
@@ -68,15 +78,17 @@ Python Code
 ## Project Structure
 
 ```text
-C2Py-Compiler/
+C2Py_Transpiler/
 │
 ├── lexer.py
 ├── parser.py
 ├── codeGenerator.py
 ├── main.py
 │
-├── README.md
-└── .gitignore
+├── input.c
+├── python_code.py
+│
+└── README.md
 ```
 
 ### lexer.py
@@ -134,41 +146,23 @@ grade = A
 
 ## Example
 
-### Input
+### Input (input.c)
 
 ```c
-int age = 20;
+int a = 1;
+int b = 2;
+char c = 'C';
+char d = 'D';
 ```
 
-### Tokens
+### Generated Output (python_code.py)
 
 ```python
-[
-    ('INT', 'int'),
-    ('IDENTIFIER', 'age'),
-    ('EQUALS', '='),
-    ('NUMBER', '20'),
-    ('SEMICOLON', ';')
-]
+a = 1
+b = 2
+c = C
+d = D
 ```
-
-### AST
-
-```python
-{
-    "node_type": "VariableDeclaration",
-    "var_type": "int",
-    "name": "age",
-    "value": "20"
-}
-```
-
-### Generated Python
-
-```python
-age = 20
-```
-
 ---
 
 ## Installation
@@ -176,13 +170,13 @@ age = 20
 Clone the repository:
 
 ```bash
-git clone https://github.com/AryaXVer7/C2Py_Transpiler_Version_0.1.git
+git clone https://github.com/AryaXVer7/C2Py_Transpiler.git
 ```
 
 Move into the project directory:
 
 ```bash
-cd C2Py_Transpiler_Version_0.1
+cd C2Py_Transpiler
 ```
 
 Run:
@@ -197,7 +191,7 @@ python main.py
 
 This project currently supports only:
 
-- Single variable declarations
+- Multiple variable declarations
 - Integer literals
 - Character literals
 - `int`
@@ -231,21 +225,6 @@ This project is being built to learn:
 
 ---
 
-## Sample Output
-
-Input:
-
-```c
-char alphabet = 'A';
-```
-
-Output:
-
-```python
-alphabet = A
-```
----
-
 ## Contributing
 
 Suggestions, bug reports, and pull requests are welcome.
@@ -256,6 +235,6 @@ If you are learning compilers too, feel free to fork the project and experiment 
 
 ## Author
 
-Built as a personal compiler-learning project.
+Built as a personal transpiler-learning project.
 
 GitHub: https://github.com/AryaXVer7
