@@ -40,7 +40,7 @@ Generated Python:
 
 ```python
 age = 20
-grade = 'A'
+grade = A
 sum = 5 + 3
 ```
 
@@ -123,8 +123,8 @@ int total = 10 + 4;
 a = 1
 b = 2
 
-c = 'C'
-d = 'D'
+c = C
+d = D
 
 sum = 5 + 3
 total = 10 + 4
