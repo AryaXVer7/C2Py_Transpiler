@@ -2,22 +2,17 @@
 
 int a = 1;
 int b = 2;
+int c = 3;
 int d = 4;
 int e = 5;
-int c = 3;
-int f = 6;
-int g = 7;
-int h = 8;
-int j = 10;
-int i = 9;
-                
-int b = 'B';
-int a = 'A';
-int d = 'D';
-int c = 'C';
-int f = 'F';
-int e = 'E';
-int h = 'H';
-int g = 'G';
-int j = 'J';
-int i = 'I';
+
+char h = 'H';
+char g = 'G';
+char j = 'J';
+char i = 'I';
+
+int k = 5 + 3;
+int l = 2 + 4;
+int m = 6 + 1;
+int n = 10 + 3;
+

@@ -7,19 +7,19 @@ with open("input.c", "r") as file:
     
 lines = source_code.splitlines()
 
-filtered_code = []
+filtered_lines = []
 
 for line in lines:
     if not line.startswith("#"):
-        filtered_code.append(line)
+        filtered_lines.append(line)
+        
+source_code = "\n".join(filtered_lines)
 
-source_code = "\n".join(filtered_code)
+Tokens = tokenizer(source_code)
+ast = parser(Tokens)
+python_code = generate(ast)
 
-Token_Created = tokenizer(source_code)
-ast = parser(Token_Created)
-python_code_generate = generate(ast)
+with open("output.py", "w") as file:
+    file.write(python_code)
 
-with open("python_code.py", "w") as file:
-    file.write(python_code_generate)
-
-print("Python file generated as python_code.py")
+print("python file generated as output.py")

@@ -1,12 +1,12 @@
 # C2Py_Transpiler
 
-A beginner-friendly C to Python transpiler written in Python.
+A beginner-friendly C-to-Python transpiler written in Python.
 
 This project is part of my compiler development journey. The goal is to learn how real compilers work by building one from scratch, step by step.
 
 Instead of translating the entire C language, this project starts with a very small subset of C and gradually adds new features in each version.
 
-Current version: **v2**
+**Current Version: **v3**
 
 ---
 
@@ -14,29 +14,39 @@ Current version: **v2**
 
 ### Supported Data Types
 
-- `int`
-- `char`
+* `int`
+* `char`
 
 ### Supported Statements
 
-Variable declarations with initialization.
-Multiple variable declarations
+* Variable declarations with initialization
+* Multiple variable declarations
+* Binary addition expressions
+
+### Supported Operators
+
+* `+`
 
 Example:
 
 ```c
 int age = 20;
 char grade = 'A';
+
+int sum = 5 + 3;
 ```
 
 Generated Python:
 
 ```python
 age = 20
-grade = A
+grade = 'A'
+sum = 5 + 3
 ```
 
-### File-Based Transpilation
+---
+
+## File-Based Transpilation
 
 The transpiler:
 
@@ -44,15 +54,14 @@ The transpiler:
 2. Tokenizes the source code
 3. Builds an Abstract Syntax Tree (AST)
 4. Generates equivalent Python code
-5. Writes the result to `python_code.py`
+5. Writes the result to `output.py`
 
 ---
+
 ## Compiler Pipeline
 
-The transpiler follows the basic structure used in real compilers:
-
 ```text
-inout.c (source_code)
+input.c (source code)
      │
      ▼
    Lexer
@@ -70,7 +79,7 @@ inout.c (source_code)
 Code Generator
      │
      ▼
-python_code.py (output file)
+output.py
 ```
 
 ---
@@ -86,60 +95,9 @@ C2Py_Transpiler/
 ├── main.py
 │
 ├── input.c
-├── python_code.py
+├── output.py
 │
 └── README.md
-```
-
-### lexer.py
-
-Converts source code into tokens.
-
-Input:
-
-```c
-char grade = 'A';
-```
-
-Output:
-
-```python
-[
-    ('CHAR', 'char'),
-    ('IDENTIFIER', 'grade'),
-    ('EQUALS', '='),
-    ('CHAR_LITERAL', 'A'),
-    ('SEMICOLON', ';')
-]
-```
-
----
-
-### parser.py
-
-Converts tokens into an Abstract Syntax Tree (AST).
-
-Output:
-
-```python
-{
-    "node_type": "VariableDeclaration",
-    "var_type": "char",
-    "name": "grade",
-    "value": "A"
-}
-```
-
----
-
-### codeGenerator.py
-
-Converts the AST into Python code.
-
-Output:
-
-```python
-grade = A
 ```
 
 ---
@@ -151,63 +109,105 @@ grade = A
 ```c
 int a = 1;
 int b = 2;
+
 char c = 'C';
 char d = 'D';
+
+int sum = 5 + 3;
+int total = 10 + 4;
 ```
 
-### Generated Output (python_code.py)
+### Generated Output (output.py)
 
 ```python
 a = 1
 b = 2
-c = C
-d = D
+
+c = 'C'
+d = 'D'
+
+sum = 5 + 3
+total = 10 + 4
 ```
+
 ---
 
-## Installation
+## Version History
 
-Clone the repository:
+### v1
 
-```bash
-git clone https://github.com/AryaXVer7/C2Py_Transpiler.git
+Features:
+
+* Integer declarations
+* Character declarations
+* Integer literals
+* Character literals
+* Lexer implementation
+* Parser implementation
+* AST generation
+* Python code generation
+
+---
+
+### v2
+
+New Features:
+
+* Multiple variable declarations
+* Read source code from `input.c`
+* Generate Python output files
+* Ignore preprocessor directives such as `#include`
+* Improved AST handling
+
+---
+
+### v3
+
+New Features:
+
+* Binary expression support
+* Addition operator (`+`)
+* BinaryExpression AST nodes
+* Python code generation for arithmetic expressions
+
+Example:
+
+```c
+int result = 5 + 3;
 ```
 
-Move into the project directory:
+Output:
 
-```bash
-cd C2Py_Transpiler
-```
-
-Run:
-
-```bash
-python main.py
+```python
+result = 5 + 3
 ```
 
 ---
 
 ## Current Limitations
 
-This project currently supports only:
+Currently supported:
 
-- Multiple variable declarations
-- Integer literals
-- Character literals
-- `int`
-- `char`
+* int declarations
+* char declarations
+* integer literals
+* character literals
+* multiple declarations
+* addition expressions
 
-The following are **not supported yet**:
+Not yet supported:
 
-- Arithmetic expressions
-- Strings
-- Multiple declarations
-- Functions
-- Loops
-- Conditionals
-- Arrays
-- Structs
-- Pointers
+* Subtraction (`-`)
+* Multiplication (`*`)
+* Division (`/`)
+* Parentheses
+* Strings
+* Functions
+* Loops
+* Conditionals
+* Arrays
+* Structs
+* Pointers
 
 ---
 
@@ -215,13 +215,14 @@ The following are **not supported yet**:
 
 This project is being built to learn:
 
-- Lexical Analysis
-- Parsing
-- Abstract Syntax Trees (ASTs)
-- Code Generation
-- Compiler Architecture
-- Language Design
-- Python Implementation Techniques
+* Lexical Analysis
+* Parsing
+* Abstract Syntax Trees (ASTs)
+* Expression Parsing
+* Code Generation
+* Compiler Architecture
+* Language Design
+* Python Implementation Techniques
 
 ---
 
@@ -238,4 +239,5 @@ If you are learning compilers too, feel free to fork the project and experiment 
 Built as a personal transpiler-learning project.
 
 GitHub: https://github.com/AryaXVer7
+
 
